@@ -21,9 +21,9 @@ def start_scrapping():
 
     soup = bs4.BeautifulSoup(result.text, "lxml")
 
-    announced_auctions = soup.find_all('div', class_="i_announced_auctions_wrapper_item")
+    announced_auctions = soup.find_all('div', class_="i_announced_auctions_wrapper_item") #Info on all open tenders is stored here.
 
-    for announced_auction in announced_auctions:
+    for announced_auction in announced_auctions: #we will loop through all divs with tenders info
         auct.append(announced_auction.find("strong").text.strip()) #we save auction name
         auct_lot.append(announced_auction.find('span', class_="i_announced_auctions_wrapper_code").text.strip()) #we save auction lot number
         auct_price.append(announced_auction.find('strong', class_="i_announced_auctions_wrapper_amount").text.strip()) #we save auction budget price
